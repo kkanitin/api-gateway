@@ -1,0 +1,29 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: GATEWAY-SERVICE
+  cloud:
+    gateway:
+      routes:
+        - id: MOCK-SERVICE
+          uri: http://localhost:8081
+          predicates:
+            - Path=/mock-service/**
+          filters:
+            - StripPrefix=1
+
+logging:
+  level:
+    web: debug
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8089/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
