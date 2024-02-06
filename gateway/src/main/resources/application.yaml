@@ -5,13 +5,9 @@ spring:
     name: GATEWAY-SERVICE
   cloud:
     gateway:
-      routes:
-        - id: MOCK-SERVICE
-          uri: http://localhost:8081
-          predicates:
-            - Path=/mock-service/**
-          filters:
-            - StripPrefix=1
+      discovery:
+        locator:
+          enabled: true
 
 logging:
   level:
