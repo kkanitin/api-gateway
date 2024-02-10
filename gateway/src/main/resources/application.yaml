@@ -8,6 +8,20 @@ spring:
       discovery:
         locator:
           enabled: true
+      routes:
+        - id: MOCK-SERVICE-RATE-LIMIT
+          uri: lb://MOCK-SERVICE/rate
+          predicates:
+            - Path=MOCK-SERVICE-RATE/rate
+          filters:
+            - StripPrefix=1
+            - name: RequestRateLimiter
+              args:
+                key-resolver: "#{@UserKeyResolver}"
+                rate-limiter:
+                  type: InMemory
+                  capacity: 10
+                  replenishRate: 10
 
 logging:
   level:
