@@ -18,7 +18,7 @@ Configuration:
       fileName: logs/app.log
       filePattern: logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log
       PatternLayout:
-        Pattern: "%d{ISO8601_OFFSET_DATE_TIME_HHCMM} MOCK-SERVICE %level %c{3.} [%t] %X{correlationId} : %msg%n%throwable"
+        Pattern: "%d{ISO8601_OFFSET_DATE_TIME_HHCMM} MOCK-SERVICE5678 %level %c{3.} [%t] %X{correlationId} : %msg%n%throwable"
       Policies:
         TimeBasedTriggeringPolicy:
         SizeBasedTriggeringPolicy:
@@ -29,7 +29,7 @@ Configuration:
       fileName: logs/app.log
       filePattern: logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log
       PatternLayout:
-        Pattern: "%d{ISO8601_OFFSET_DATE_TIME_HHCMM} MOCK-SERVICE %level %c{3.} [%t] %X{correlationId} : %msg%n%throwable"
+        Pattern: "%d{ISO8601_OFFSET_DATE_TIME_HHCMM} MOCK-SERVICE6789 %level %c{3.} [%t] %X{correlationId} : %msg%n%throwable"
       Filters:
         ThresholdFilter:
           level: error
