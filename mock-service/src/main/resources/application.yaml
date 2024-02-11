@@ -1,5 +1,5 @@
 server:
-  port: 0
+  port: 8080
 #  servlet:
 #    context-path: /mock
 
@@ -10,7 +10,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8089/eureka
+      defaultZone: ${EUREKA_SERVER_URL:http://localhost:8089/eureka}
   instance:
     hostname: localhost
     instance-id: ${spring.application.name}:${instanceId:${random.value}}

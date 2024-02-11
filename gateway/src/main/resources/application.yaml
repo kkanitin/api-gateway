@@ -12,16 +12,21 @@ spring:
         - id: MOCK-SERVICE-RATE-LIMIT
           uri: lb://MOCK-SERVICE/rate
           predicates:
-            - Path=MOCK-SERVICE-RATE/rate
+            - Path=/MOCK-SERVICE-RATE/rate/**
           filters:
-            - StripPrefix=1
+            - RewritePath=/MOCK-SERVICE-RATE/rate, /rate
             - name: RequestRateLimiter
               args:
-                key-resolver: "#{@UserKeyResolver}"
-                rate-limiter:
-                  type: InMemory
-                  capacity: 10
-                  replenishRate: 10
+                redis-rate-limiter.replenishRate: 10
+                redis-rate-limiter.burstCapacity: 20
+                redis-rate-limiter.requestedToken: 1
+                key-resolver: "#{@SimpleClientAddressResolver}"
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      database: 1
+      password: password
 
 logging:
   level:

@@ -1,0 +1,52 @@
+version: "3.8"
+services:
+  redis:
+    container_name: redis
+    image: redis
+    restart: on-failure
+    ports:
+      - "6379:6379"
+    expose:
+      - "6379"
+    environment:
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: password
+      REDIS_REQUIREPASS: 0
+      REDIS_DATABASES: 1
+    volumes:
+      - redis:/data
+    networks:
+      - my-network
+  eureka-server:
+    container_name: eureka-server
+    build:
+      context: eureka_server
+      dockerfile: Dockerfile
+    ports:
+      - "8089:8089"
+    expose:
+      - "8089"
+    networks:
+      - my-network
+  mock-service:
+    container_name: mock-service
+    build:
+      context: mock-service
+      dockerfile: Dockerfile
+    environment:
+      - EUREKA_SERVER_URL=http://eureka-server:8089/eureka
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    depends_on:
+      - eureka-server
+    networks:
+      - my-network
+volumes:
+  redis:
+    driver: local
+
+networks:
+  my-network:
+    driver: bridge

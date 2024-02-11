@@ -31,7 +31,6 @@ public class LoggingGlobalFilter implements GlobalFilter {
         exchange.getRequest().mutate().header(CORRELATION_ID_HEADER_NAME, correlationId);
 
         log.info(CORRELATION_ID_LOG_VAR_NAME + ": " + correlationId);
-        log.info("REQUEST ID: " + request.getId());
         log.info("METHOD: " + request.getMethod().name());
         log.info("PATH: " + request.getPath());
 
