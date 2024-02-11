@@ -28,6 +28,23 @@ services:
       - "8089"
     networks:
       - my-network
+  gateway:
+    container_name: gateway
+    build:
+      context: gateway
+      dockerfile: Dockerfile
+    environment:
+      - EUREKA_SERVER_URL=http://eureka-server:8089/eureka
+      - REDIS_URL=http://redis
+      - REDIS_PORT=6379
+    ports:
+      - "8090:8090"
+    expose:
+      - "8090"
+    depends_on:
+      - eureka-server
+    networks:
+      - my-network
   mock-service:
     container_name: mock-service
     build:
