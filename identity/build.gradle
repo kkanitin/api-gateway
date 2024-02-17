@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "com.example"
-version = "1.0.0"
+version = "0.0.1-SNAPSHOT"
 
 java {
     sourceCompatibility = "21"
@@ -20,9 +20,6 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
-    all {
-        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-    }
 }
 
 repositories {
@@ -31,15 +28,16 @@ repositories {
 
 dependencies {
     implementation "org.springframework.boot:spring-boot-starter-web"
-    implementation "org.springframework.boot:spring-boot-starter-log4j2"
-    implementation "org.springframework.boot:spring-boot-starter-actuator"
-    implementation "org.springframework.cloud:spring-cloud-loadbalancer:${springCloudVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-security"
+    implementation "org.springframework.boot:spring-boot-starter-oauth2-resource-server"
+    implementation "io.jsonwebtoken:jjwt:0.12.5"
+    implementation "org.springframework.boot:spring-boot-starter-validation"
     implementation "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:${springCloudVersion}"
-
 
     compileOnly "org.projectlombok:lombok"
     annotationProcessor "org.projectlombok:lombok"
     testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation "org.springframework.security:spring-security-test"
 }
 
 tasks.named("test") {

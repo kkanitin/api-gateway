@@ -8,19 +8,6 @@ spring:
       discovery:
         locator:
           enabled: true
-      routes:
-        - id: MOCK-SERVICE-RATE-LIMIT
-          uri: lb://MOCK-SERVICE/rate
-          predicates:
-            - Path=/MOCK-SERVICE-RATE/rate/**
-          filters:
-            - RewritePath=/MOCK-SERVICE-RATE/rate, /rate
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter.replenishRate: 10
-                redis-rate-limiter.burstCapacity: 20
-                redis-rate-limiter.requestedToken: 1
-                key-resolver: "#{@SimpleClientAddressResolver}"
   data:
     redis:
       host: ${REDIS_URL:localhost}
@@ -42,3 +29,8 @@ management:
     web:
       exposure:
         include: "*"
+
+application:
+  jwt:
+    app-name: api-gateway
+    public-key: ${PUBLIC-KEY:classpath:public-key.pem}

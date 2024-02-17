@@ -1,9 +1,15 @@
 server:
-  port: 8080
+  port: 8082
 
 spring:
   application:
-    name: MOCK-SERVICE
+    name: IDENTITY-SERVICE
+
+application:
+  jwt:
+    app-name: api-gateway
+    private-key: ${PRIVATE-KEY:classpath:private-key.pem}
+    public-key: ${PUBLIC-KEY:classpath:public-key.pem}
 
 eureka:
   client:
