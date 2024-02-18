@@ -42,6 +42,7 @@ services:
     expose:
       - "8090"
     depends_on:
+      - redis
       - eureka-server
     networks:
       - my-network
@@ -60,6 +61,22 @@ services:
       - eureka-server
     networks:
       - my-network
+  identity-service:
+    container_name: identity-service
+    build:
+      context: identity
+      dockerfile: Dockerfile
+    environment:
+      - EUREKA_SERVER_URL=http://eureka-server:8089/eureka
+    ports:
+      - "8082:8082"
+    expose:
+      - "8082"
+    depends_on:
+      - eureka-server
+    networks:
+      - my-network
+
 volumes:
   redis:
     driver: local
