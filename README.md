@@ -21,6 +21,7 @@ capabilities and gaining experience with API Gateway implementations.
 * Rate Limit
 * Jwt Validate
 * Routing
+* Service Discovery
 
 ### Prerequisites
 
