@@ -11,8 +11,6 @@ RUN gradle build --no-daemon
 
 FROM openjdk:21 AS run
 
-RUN #adduser --system --group app-user
-
 COPY --from=build /app/build/libs/eureka_server-1.0.0.jar eureka_server.jar
 
 EXPOSE 8089
