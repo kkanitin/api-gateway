@@ -34,14 +34,6 @@ capabilities and gaining experience with API Gateway implementations.
 
 2. Execute following command<br>
 
-for windows
-
 ```sh
-  build.bat
-```
-
-for linux/macos
-
-```sh
-  build.sh
+  docker-compose up -d --build
 ```
