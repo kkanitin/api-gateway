@@ -1,7 +1,5 @@
 <h1 align="center" id="title">API Gateway</h1>
 
-[//]: # (<p id="description">This project sets up an API Gateway using Spring Cloud providing a unified entry point for microservices.</p>)
-
 ## Table of Contents
 
 * [About The Project](#about-the-project)
